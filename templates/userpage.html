@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">-->
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;
+  height:100%;
+                margin:0;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color:rgb(82, 165, 165);
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color:rgb(82, 165, 165);
+  color: white;
+}
+.space {
+  width: 30px;
+  height: auto;
+  display: inline-block;
+}
+body
+{
+  background-image: url('static/adminpage.jpeg');
+  height: 100%;
+	width:100%;
+  background-size:cover;
+	position:absolute;
+}
+
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.modal-body:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+</head>
+<body>
+<br>
+
+<center><h3>PATIENT CARE</h2></center>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+<!-- Trigger/Open The Modal -->
+<button id="profile_btn" onclick="profile_fun()" class="profile_btn"><img src="{{url_for('static',filename = 'profile.jpeg')}}" alt="patientProfile" width="150" height="150"></button>
+<div class="space"></div>
+<button id="report_btn" onclick="report_fun()" class="report_btn"><img src="{{url_for('static',filename = 'report.jpeg')}}" alt="patientreport" width="150" height="150"></button>
+<div class="space"></div>
+<button id="prescription_btn" onclick="pricription_fun()"class="prescription_btn"><img src="{{url_for('static',filename = 'precription.jpeg')}}" alt="precription" width="150" height="150"></button>
+<div class="space"></div>
+<button id="medication_btn" onclick="medication_fun()" class="Medication_btn"><img src="{{url_for('static',filename = 'medication.jpeg')}}" alt="medication" width="150" height="150"></button>
+</center>
+
+<!-- The Modal -->
+<div id="profileModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+     <center> <h2>Patient Profile</rofileh2></center>
+    </div>
+    <div class="modal-body">
+      <center>
+      <table border=1>
+        {%for r in row1%}
+        <tr><td>Name</td><td>{{r[2]}} {{r[3]}}</td></tr>
+        <tr><td>Username(Aadhar Number)</td><td>{{r[0]}}</td></tr>
+        <tr><td>Gender</td><td>{{r[5]}}</td></tr>
+        <tr><td>Age</td><td>{{r[6]}}</td></tr>
+        <tr><td>Contact_details</td><td>{{r[7]}}</td></tr>
+        <tr><td>Address</td><td>{{r[8]}},{{r[9]}},{{r[10]}},{{r[11]}},{{r[12]}}</td></tr>
+      </table>
+      {% endfor %}
+    </table>
+  </center>
+      </div>
+    <div class="modal-footer">
+      
+    </div>
+  </div>
+
+</div>
+
+
+<div id="reportModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <center><h2>Report Profile</h2></center>
+    </div>
+    <div class="modal-body">
+      <center>
+      <table border=1>
+        <thead><td>Date</td><td>X-ray</td><td>result</td></thead>
+        <tbody>
+        {%for r in res_set%}
+
+         <tr><td>{{r[0]}}</td>
+          <td><img height=100 src="data:image/png;base64,{{r[1]}}"/></td>
+          <td>{{r[2]}}</td>
+          </tr>
+      {% endfor %}
+      </tbody>
+         </table>
+        </center>
+      </div>
+    <div class="modal-footer">
+      
+    </div>
+  </div>
+
+</div>
+
+
+<div id="prescriptionModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <center><h2>Prescription</h2></center>
+    </div>
+    <div class="modal-body">
+      <center>
+        
+        <form id=upload_precription class="input-group" method="POST" action="/prescription" enctype="multipart/form-data" onsubmit="myFunction()">
+          <center>   <h1>Uploading Prescription data</h1>
+         
+             <label>Username(Adharnumber):</label>
+             {%for r in row1%}
+             <input type="text" id=username" name="username" size=12" value={{r[0]}} readonly> <br> <br>
+             {% endfor %}
+             <label class="upload prescription_images">
+             <input class="form-control" type="file" name="image" id="fileToUpload">
+            
+             <label>Date:</label>
+             <input type="date" name="date" size="20" required/> <br> <br>
+             <button type="submit" name="upload">Submit</button>  
+      </center>
+      
+      <center>
+        <table border=1>
+          <thead><td>Precription</td><td>Date</td></thead>
+          <tbody>
+          {%for r in pre_set%}
+          <tr>
+            <td><img height="400" width="400" src="data:image/png;base64,{{r[0]}}"/></td>
+            <td>{{r[1]}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+           </table>
+          </center>
+
+      </div>
+    <div class="modal-footer">
+      
+    </div>
+  </div>
+
+</div>
+
+
+<div id="reportModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+     <center> <h2>Report Profile</h2></center>
+    </div>
+    <div class="modal-body">
+      <center>
+      <table border=1>
+        <thead><td>Date</td><td>X-ray</td><td>result</td></thead>
+        <tbody>
+        {%for r in res_set%}
+
+         <tr><td>{{r[0]}}</td>
+          <td><img height=100 src="data:image/png;base64,{{r[1]}}"/></td>
+          <td>{{r[2]}}</td>
+          </tr>
+      {% endfor %}
+      </tbody>
+         </table>
+        </center>
+      </div>
+    <div class="modal-footer">
+      
+    </div>
+  </div>
+
+</div>
+
+<div id="medicationModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+     <center> <h2>Medication</h2></center>
+    </div>
+    <div class="modal-body">
+    <center>
+    <div id="medicine">
+    <img src="{{url_for('static',filename = 'covidmedicine.png')}}"/> 
+    </div> 
+    </center>
+    <center>
+      <p>===========================================================================================</p>
+    <div id="online order" align="center">  
+    <form>
+       <button 
+         onclick="window.location.href = 'https://www.apollopharmacy.in/'">
+         <img src="{{url_for('static',filename = 'onlineorder.jpeg')}}" alt="patientProfile" width="200" height="200">
+    </button>
+    </form> 
+    </div>
+    </center>
+
+    </div>
+    <div class="modal-footer">
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+<script>
+// Get the modal
+function profile_fun()
+{
+  var modal = document.getElementById("profileModal");
+  // Get the button that opens the modal
+  var btn = document.getElementById("profile_btn");
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() 
+  {
+    modal.style.display = "block";
+  }
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() 
+  {
+    modal.style.display = "none";
+  }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event)
+  {
+    if (event.target == modal) 
+    {
+      modal.style.display = "none";
+    }
+  }
+}
+
+function report_fun()
+{
+  var modal = document.getElementById("reportModal");
+  // Get the button that opens the modal
+  var btn = document.getElementById("report_btn");
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[1];
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() 
+  {
+    modal.style.display = "block";
+  }
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() 
+  {
+    modal.style.display = "none";
+  }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event)
+  {
+    if (event.target == modal) 
+    {
+      modal.style.display = "none";
+    }
+  }
+}
+
+function pricription_fun()
+{
+var modal = document.getElementById("prescriptionModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("prescription_btn");
+
+
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[2];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+}
+
+function medication_fun()
+{
+  var modal = document.getElementById("medicationModal");
+
+// Get the button that opens the modal
+  var btn = document.getElementById("medication_btn");
+// Get the <span> element that closes the modal
+ var span = document.getElementsByClassName("close")[3];
+
+  btn.onclick = function() 
+  {
+     modal.style.display = "block";
+  }
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+}
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Page</title>
+
+    <style>
+      body {
+  height:100%;
+                margin:0;}
+  h1
+  {
+    
+      color: rgb(7, 9, 11);
+      font-style: oblique; 
+  }
+      body
+      {
+        background-image: url('static/adminpage.jpeg');
+        background-repeat:no-repeat;
+        height: 100%;
+        width:100%;
+        background-size:cover;
+        position:absolute;
+      }
+     
+      
+#container {
+    width: 300px;
+    background-color: #ffcc33;
+    margin: auto;
+}
+#first {
+    width: 100px;
+    float: left;
+    height: 300px;
+        
+}
+#second {
+    width: 100px;
+    float: right;
+    height: 300px;
+}
+    </style>
+  </head>
+  <body>
+
+      <br>
+      <br>
+      <h1><center>Admin Page</center></h1>
+     <br>
+     <br>
+     <br>
+     <div id="container">
+      <div id="first"> 
+     <form method="POST" action="/add_patient">
+      <button id="add_patient" class="add_patient"><img src="{{url_for('static',filename = 'add.png')}}" alt="add_new_patient" width="150" height="150"></button>
+      </form>
+      </div>
+      <div id="second"> 
+     <form method="POST" action="/upload_image">
+      <button id="Upload_Xray" class="Upload_Xray"><img src="{{url_for('static',filename = 'upload_xray.png')}}" alt="Upload_Xray" width="150" height="150"></button>
+      </form>
+
+      </div>
+      </div>
+      <br><br><br><br><br>
+      <br><br><br><br><br>
+      {{result}}
+      <center>
+      <form method="POST" action="/">
+      <input type="submit" value="back" name="back"/>
+      
+    </form>
+    
+  </center>
+  </body>
+</html>

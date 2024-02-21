@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration page</title>
+        <style>
+          h1
+          {
+            font-style:italic;
+          }
+          body
+          {
+            background-image: url('static/adminpage.jpeg');
+        
+        height: 100%;
+        width:100%;
+        background-size:cover;
+        position:absolute;
+          }
+        </style>
+    </head>
+
+    
+    <body>
+    <center><h1>REGISTRATION PAGE...</h1></center>
+        <br>
+        <br>
+        <div class="heros">
+            <div class="form-choose">
+              
+                <form id=add_new_patient class="input-group" method="POST" action="/savedetails" onsubmit="myFunction()">
+                 
+                  <center>
+                  <table>
+                   
+                  <tr>
+                    <td>Firstname:</td>
+                    <td>
+                  <input type="text" name="firstname" size="18" required> 
+                   </td>  
+                   </tr>  
+                  <tr>
+                  <td>Lastname:</td>
+                  <td><input type="text" name="lastname" size="18" required> 
+                  </td>
+                 </tr>
+                  <tr>
+                    <td>Aadhar Number :</td> 
+                    <td>
+                  <input type=text name="Aadhar"  pattern="[0-9]{12}" size="12"> </td>
+                  </tr>
+                  <tr>
+                    <td>Gender:</td>
+                    <td>
+
+                  <select name="Gender" required>
+                  
+                    <option value="none" selected> </option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">other</option>
+                   
+                  </select></td>
+                  </tr>
+                  <tr>
+                    <td>
+                  <label> Age </label></td>
+                  <td>
+                  <input type="text" name="age" size="18" required> </td>
+                  
+                  </tr>
+                  <tr>               <td>
+                  <label> Phone :</label></td>
+                <td>
+
+                 
+                 <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" size="10" required> 
+                </td>
+              </tr>
+                <tr>
+                  <td>
+                 <label>House no:</label></td>
+                 <td>
+                 <input type="text" name="Houseno" size="18" required> 
+                 </td>
+                 </tr>
+                 <tr>
+                   <td> street:</td>
+                   <td><input type="text" name="street" size="18" required> </td>
+
+                 </tr>
+                
+                 <tr> <td>city:</td><td><input type="text" name="city" size="18" required> </td></tr>
+                 <tr><td>Postal code:</td><td><input type="text" name="pin_no" size="6" required> </td></tr>
+                 
+                 <tr><td>  state:<td><input type="text" name="state" size="18" required></td></tr>
+                
+ 
+                 
+                 
+            
+                 
+                 </table>
+                 <br>
+                 <br>
+                 <input type="submit" value="Register" >
+                </center>
+                </form>
+              
+                
+            </div>
+            
+        </div>
+        </div>
+        <center>{{result}}</center>
+    </body>
+</html>
